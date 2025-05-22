@@ -1,5 +1,9 @@
 function updateVis() {
+  updateDynamicFlowerHeightDomain(); // Set initial dynamic domain
+
   const transitionDuration = 750; // Duration for smooth transitions in milliseconds
+
+  drawOrUpdateYAxis(transitionDuration); // Draw/update the axis with the new domain
 
   // Access global variables defined in your index.html script block:
   // weights, dimensions, scores, svg, angleScale, flowerHeight, radiusScale, colorScale

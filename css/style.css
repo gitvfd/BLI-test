@@ -21,9 +21,10 @@
 }
 #flower-container {
   position: relative;
-  background-color: #e3e9f3;
+  /*background-color: #e3e9f3;
   background-image: -webkit-linear-gradient(#e3e9f3, #e4e2d4);
-  background-image: linear-gradient(#e3e9f3, #e4e2d4);
+  background-image: linear-gradient(#e3e9f3, #e4e2d4);*/
+  background-color: white;
   border-bottom: 1px solid #b3bccd;
 }
 
@@ -46,16 +47,34 @@
 /***********/
 /**Sliders**/
 /***********/
+
 .container {
-  background-color: #e3e9f3;
+  /*background-color: #e3e9f3;
   background-image: -webkit-linear-gradient(#e3e9f3, #e4e2d4);
-  background-image: linear-gradient(#e3e9f3, #e4e2d4);
+  background-image: linear-gradient(#e3e9f3, #e4e2d4);*/
+  background-color: white;
   border-bottom: 1px solid #b3bccd;
   max-width: 300px;
   margin: 0 auto;
+  font-family: "Noto Sans", sans-serif;
+}
+h3 {
+  text-align: left;
+  font-family: "Noto Sans Display";
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24px;
+}
+p {
+  text-align: left;
+  font-family: "Noto Sans";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
 }
 .dimension {
-  margin: 20px 0;
+  margin: 10px 0;
+  border-bottom: 1px solid #b3bccd;
 }
 .slider {
   width: 100%;
@@ -64,11 +83,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  font-family: "Noto Sans";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #586179;
 }
-#results {
+/*#results {
   margin-top: 40px;
 }
 #results ul {
   list-style: none;
   padding: 0;
+}*/
+
+/***********/
+/**Axis*****/
+/***********/
+
+.y-axis path.domain {
+  /* The main vertical line of the axis */
+  stroke: #333; /* Dark grey for the axis line */
+  stroke-width: 0px;
+}
+
+.y-axis .tick line {
+  /* The small tick marks */
+  stroke: #ccc; /* Lighter grey for tick lines */
+}
+
+.y-axis .tick text {
+  /* The numbers/labels on the ticks */
+  font-family: "Noto Sans", sans-serif;
+  font-size: 9px; /* Or your preferred size */
+  fill: #444; /* Slightly darker grey for text for readability */
 }

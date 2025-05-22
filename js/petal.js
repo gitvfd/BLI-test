@@ -25,7 +25,9 @@ function petalPath(d, i) {
   return (
     "M0,0C0,0" +
     ",-" +
-    (2 * (radiusScale(d.data.score) * weights[d.data.dim])) / sumOfUserWeights +
+    (2.25 *
+      (radiusScale(d.data.score) * petalWeightScale(weights[d.data.dim]))) /
+      sumOfUserWeights +
     "," +
     (8 * radiusScale(d.data.score)) / 10 +
     ",0," +
@@ -33,7 +35,9 @@ function petalPath(d, i) {
     "C0," +
     radiusScale(d.data.score) +
     "," +
-    (2 * (radiusScale(d.data.score) * weights[d.data.dim])) / sumOfUserWeights +
+    (2.25 *
+      (radiusScale(d.data.score) * petalWeightScale(weights[d.data.dim]))) /
+      sumOfUserWeights +
     "," +
     (8 * radiusScale(d.data.score)) / 10 +
     ",0,0"
@@ -42,12 +46,13 @@ function petalPath(d, i) {
 
 function petalFill(d, i) {
   // d is a pie segment
-  return d3.rgb(colorScale(d.data.dim)); // Color based on dimension and weighting
+  if (weights[d.data.dim] == 0) return "white";
+  else return d3.rgb(colorScale(d.data.dim)); // Color based on dimension and weighting
 }
 
 function petalOpacity(d, i) {
   // d is a pie segment
-  return weights[d.data.dim] / 10; // Color based on dimension and weighting 10 corresponds to highest weight
+  return opacityScale(weights[d.data.dim] / (sumOfUserWeights / 11) / 10); // Color based on dimension and weighting 10 corresponds to highest weight
 }
 
 function petalStroke(d, i) {
