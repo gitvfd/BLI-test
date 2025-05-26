@@ -1288,9 +1288,59 @@
                 .remove();
             })
             .on("mousemove.tooltip", function () {
+              const event = d3.event; // Get the current event
+
+              // Get tooltip dimensions. It's important to do this after it's visible and content is set.
+              const tooltipNode = tooltipDiv.node();
+              const tooltipWidth = tooltipNode.offsetWidth;
+              const tooltipHeight = tooltipNode.offsetHeight;
+
+              // Get window dimensions
+              const viewportWidth = window.innerWidth;
+              const viewportHeight = window.innerHeight;
+              const scrollX = window.scrollX || window.pageXOffset; // For pages wider than viewport
+              const scrollY = window.scrollY || window.pageYOffset; // For pages taller than viewport
+
+              // Define preferred offsets from the cursor
+              let offsetX = 15;
+              let offsetY = -30; // Typically above and to the right
+
+              // Calculate initial proposed position
+              let xPosition = event.pageX + offsetX;
+              let yPosition = event.pageY + offsetY;
+
+              // --- Boundary checks and adjustments ---
+              const safetyMargin = 10; // Small margin from window edges
+
+              // Check right boundary
+              if (
+                xPosition + tooltipWidth + safetyMargin >
+                viewportWidth + scrollX
+              ) {
+                xPosition = event.pageX - tooltipWidth - offsetX; // Flip to the left of cursor
+              }
+              // Check left boundary (after potential flip or if initially too far left)
+              if (xPosition < scrollX + safetyMargin) {
+                xPosition = scrollX + safetyMargin;
+              }
+
+              // Check bottom boundary
+              if (
+                yPosition + tooltipHeight + safetyMargin >
+                viewportHeight + scrollY
+              ) {
+                yPosition = event.pageY - tooltipHeight - Math.abs(offsetY); // Flip above cursor (use absolute offsetY)
+                // If Math.abs(offsetY) was 0 or too small to clear cursor, add a bit more
+                if (offsetY >= 0) yPosition -= 15; // Add extra space if it was meant to be below cursor
+              }
+              // Check top boundary (after potential flip or if initially too high)
+              if (yPosition < scrollY + safetyMargin) {
+                yPosition = scrollY + safetyMargin;
+              }
+
               tooltipDiv
-                .style("left", d3.event.pageX + 15 + "px")
-                .style("top", d3.event.pageY - 30 + "px");
+                .style("left", xPosition + "px")
+                .style("top", yPosition + "px");
             })
             .on("mouseout.tooltip", function () {
               tooltipDiv.style("opacity", 0);
