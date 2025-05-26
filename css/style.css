@@ -93,8 +93,8 @@ p {
 }
 
 .dimension-icon {
-  width: 20px; /* Your desired icon width */
-  height: 20px; /* Your desired icon height */
+  width: 25px; /* Your desired icon width */
+  height: 25px; /* Your desired icon height */
   margin-right: 8px; /* Space between icon and the label text */
   flex-shrink: 0; /* Prevents the icon from shrinking if space is limited */
 }
