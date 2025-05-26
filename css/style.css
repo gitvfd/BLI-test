@@ -172,14 +172,13 @@ p {
 /***********/
 
 #sorting-controls {
-  /* The numbers/labels on the ticks */
   text-align: left;
   font-family: "Noto Sans", sans-serif;
-  font-size: 11px; /* Or your preferred size */
-  color: #586179; /* Slightly darker grey for text for readability */
+  font-size: 11px;
+  color: #586179;
 }
 
-#sort-select {
+/*#sort-select {
   margin: 1px 0 1px 0;
   padding: 0.5rem;
   width: 100%;
@@ -197,6 +196,75 @@ p {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   min-height: 48px;
+}*/
+#sort-select {
+  /* Resetting default browser appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Font and Text Color (matching OECD) */
+  font-family: "Noto Sans Display", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 11px;
+  fill: #586179;
+
+  /* Background and Border (matching OECD) */
+
+  background-color: #e8edf2;
+  border: 1px solid #e8edf2;
+  border-radius: 0; /* OECD dropdown has sharp corners */
+
+  /* Spacing - Padding (matching OECD: 0.6rem on top/bottom, 0.8rem left, 2.5rem right for arrow) */
+  /* Assuming 1rem = 10px for this conversion, adjust if your base is different */
+  /* More commonly, 1rem = 16px. If so, padding would be approx. 9.6px 40px 9.6px 12.8px */
+  /* Let's use pixel values that look similar for clarity: */
+  padding: 7px 35px 7px 10px; /* Approximate padding: top/bottom, right (for arrow), left */
+
+  /* Custom Dropdown Arrow (SVG encoded as data URI) */
+  /* This SVG creates a simple black chevron pointing down, similar to OECD's arrow */
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%233c3c3c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Position arrow on the right, adjust 10px as needed */
+  background-size: 10px 6px; /* Size of the arrow icon */
+
+  /* Sizing and Cursor */
+  min-width: 200px; /* Adjust as needed, OECD's is wider */
+  height: auto; /* Or a specific height if needed, e.g., 34px matching common input heights */
+  line-height: 1.5; /* For vertical text centering within padding */
+  cursor: pointer;
+  box-sizing: border-box; /* Important for padding and border to be included in width/height */
+}
+
+/* Hover State (matching OECD's light blue background) */
+#sort-select:hover {
+  background-color: #f0f8ff; /* A light blue similar to OECD's #E6F2F8, adjust as needed */
+  border-color: #bbb; /* Slightly darker border on hover */
+}
+
+/* Focus State (for accessibility, common blue ring style) */
+#sort-select:focus {
+  outline: none; /* Remove default browser outline */
+  border-color: #007bff; /* A common blue for focus indication */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap-like focus shadow */
+}
+
+/* Disabled state (optional, if you might disable it) */
+#sort-select:disabled {
+  background-color: #e9ecef;
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Styling for <option> elements within the select */
+/* Note: Styling <option> elements is very limited and browser-dependent */
+#sort-select option {
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-size: 14px;
+  color: #3c3c3c;
+  background-color: #fff; /* Background of the dropdown list items */
+  padding: 5px 10px; /* May not be respected by all browsers */
 }
 
 /***********/
