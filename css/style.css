@@ -15,7 +15,7 @@
   width: 50%;
 }
 .box2 {
-  flex: 2; /* Takes 2 parts of available space */
+  flex: 4; /* Takes 2 parts of available space */
 
   width: 50%;
 }
@@ -68,27 +68,50 @@ h3 {
 p {
   text-align: left;
   font-family: "Noto Sans";
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 20px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
 }
 .dimension {
   margin: 10px 0;
   border-bottom: 1px solid #b3bccd;
 }
+
 .slider {
   width: 100%;
 }
 .label-container {
   display: flex;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
   align-items: center;
-
+  width: 100%;
   font-family: "Noto Sans";
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
   color: #586179;
+}
+
+.dimension-icon {
+  width: 20px; /* Your desired icon width */
+  height: 20px; /* Your desired icon height */
+  margin-right: 8px; /* Space between icon and the label text */
+  flex-shrink: 0; /* Prevents the icon from shrinking if space is limited */
+}
+
+.label-container label {
+  /* No specific styles needed for alignment here, flexbox handles it. */
+  /* You might want to add margin-right if you want more space before the value, */
+  /* but margin-left: auto on the value span is usually enough. */
+  /* For example: margin-right: 10px; */
+  white-space: nowrap; /* Prevents label text from wrapping if it's long and space is tight before value */
+}
+
+.label-container span[id$="Value"] {
+  /* Selects all spans whose id ends with 'Value' (e.g., housingValue, incomeValue) */
+  margin-left: auto; /* This is the key: Pushes the value to the far right */
+  padding-left: 10px; /* Optional: Adds a little space before the value so it's not flush against other content if the label grows */
+  font-weight: bold; /* Optional: Makes the value stand out a bit */
 }
 /*#results {
   margin-top: 40px;
@@ -118,4 +141,99 @@ p {
   font-family: "Noto Sans", sans-serif;
   font-size: 9px; /* Or your preferred size */
   fill: #444; /* Slightly darker grey for text for readability */
+}
+
+.tooltip-y-axis {
+  /* The small tick marks */
+
+  stroke-width: 0px;
+}
+
+.axis path.domain {
+  /* The main vertical line of the axis */
+  stroke: #333; /* Dark grey for the axis line */
+  stroke-width: 0px;
+}
+
+.axis .tick line {
+  /* The small tick marks */
+  stroke: #ccc; /* Lighter grey for tick lines */
+}
+
+.axis .tick text {
+  /* The numbers/labels on the ticks */
+  font-family: "Noto Sans", sans-serif;
+  font-size: 9px; /* Or your preferred size */
+  fill: #444; /* Slightly darker grey for text for readability */
+}
+
+/***********/
+/**SORT*****/
+/***********/
+
+#sorting-controls {
+  /* The numbers/labels on the ticks */
+  text-align: left;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 11px; /* Or your preferred size */
+  color: #586179; /* Slightly darker grey for text for readability */
+}
+
+#sort-select {
+  margin: 1px 0 1px 0;
+  padding: 0.5rem;
+  width: 100%;
+  font-family: "Noto Sans Display", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 11px;
+  fill: #586179;
+  text-align: left;
+  letter-spacing: normal;
+  vertical-align: baseline;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  min-height: 48px;
+}
+
+/***********/
+/**TOOLTIP**/
+/***********/
+#tooltip {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 0px solid #ccc;
+  border-radius: 1px;
+  padding: 12px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 11px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.2s ease-in-out;
+  min-width: 220px; /* Adjust as needed */
+  z-index: 100; /* Ensure it's on top */
+}
+
+#tooltip-country-name {
+  margin-bottom: 20px;
+  border-bottom: 1px;
+  stroke: #888;
+}
+
+#tooltip-barchart-container svg {
+  display: block;
+  font-family: "Noto Sans", sans-serif;
+}
+
+#tooltip-barchart-container .axis path,
+#tooltip-barchart-container .axis line {
+  fill: none;
+  stroke: #888;
+  shape-rendering: crispEdges;
+}
+
+#tooltip-barchart-container .axis text {
+  font-size: 8px;
+  fill: #555;
 }

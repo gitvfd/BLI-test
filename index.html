@@ -27,6 +27,7 @@
         <div id="sliders">
           <div class="dimension">
             <div class="label-container">
+              <img src="img/Housing.png" alt="Housing" class="dimension-icon" />
               <label for="housing">Housing</label>
               <span id="housingValue">5</span>
             </div>
@@ -43,6 +44,7 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img src="img/Income.png" alt="Income" class="dimension-icon" />
               <label for="income">Income</label>
               <span id="incomeValue">5</span>
             </div>
@@ -59,6 +61,7 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img src="img/Jobs.png" alt="Jobs" class="dimension-icon" />
               <label for="jobs">Jobs</label>
               <span id="jobsValue">5</span>
             </div>
@@ -75,6 +78,11 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img
+                src="img/Community.png"
+                alt="Community"
+                class="dimension-icon"
+              />
               <label for="community">Community</label>
               <span id="communityValue">5</span>
             </div>
@@ -91,6 +99,11 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img
+                src="img/Education.png"
+                alt="Education"
+                class="dimension-icon"
+              />
               <label for="education">Education</label>
               <span id="educationValue">5</span>
             </div>
@@ -107,6 +120,11 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img
+                src="img/Environment.png"
+                alt="Environment"
+                class="dimension-icon"
+              />
               <label for="environment">Environment</label>
               <span id="environmentValue">5</span>
             </div>
@@ -123,6 +141,11 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img
+                src="img/CivicEngagement.png"
+                alt="Civic Engagement"
+                class="dimension-icon"
+              />
               <label for="civic">Civic Engagement</label>
               <span id="civicValue">5</span>
             </div>
@@ -139,6 +162,7 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img src="img/Health.png" alt="Health" class="dimension-icon" />
               <label for="health">Health</label>
               <span id="healthValue">5</span>
             </div>
@@ -155,6 +179,11 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img
+                src="img/LifeSatisfaction.png"
+                alt="Life Satisfaction"
+                class="dimension-icon"
+              />
               <label for="satisfaction">Life Satisfaction</label>
               <span id="satisfactionValue">5</span>
             </div>
@@ -171,6 +200,7 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img src="img/Safety.png" alt="Safety" class="dimension-icon" />
               <label for="safety">Safety</label>
               <span id="safetyValue">5</span>
             </div>
@@ -187,6 +217,11 @@
           </div>
           <div class="dimension">
             <div class="label-container">
+              <img
+                src="img/WorkLifeBalance.png"
+                alt="Work Life Balance"
+                class="dimension-icon"
+              />
               <label for="balance">Work-Life Balance</label>
               <span id="balanceValue">5</span>
             </div>
@@ -222,6 +257,15 @@
       </div>
 
       <div id="flower-container" class="box box2"></div>
+    </div>
+    <div
+      id="tooltip"
+      style="opacity: 0; position: absolute; pointer-events: none"
+    >
+      <p style="margin: 0 0 5px 0">
+        <strong id="tooltip-country-name"></strong>
+      </p>
+      <div id="tooltip-barchart-container"></div>
     </div>
     <script>
       const dimensions = [
@@ -969,7 +1013,7 @@
         .select("#flower-container")
         .append("svg")
         .attr("width", svgWidth)
-        .attr("height", svgHeight);
+        .attr("height", svgHeight - 2 * margin);
 
       //Container for the gradients
       var defs = svg.append("defs");
@@ -1147,6 +1191,131 @@
           d3.select(this).style("opacity", 1);
         });
         updateVis();
+
+        const tooltipDiv = d3.select("#tooltip");
+        const tooltipCountryName = d3.select("#tooltip-country-name");
+        const tooltipBarChartContainer = d3.select(
+          "#tooltip-barchart-container"
+        );
+
+        // Tooltip Bar Chart Dimensions
+        const tipMargin = { top: 15, right: 15, bottom: 15, left: 55 };
+        const tipWidth = 200 - tipMargin.left - tipMargin.right; // Adjust 200 if tooltip min-width changes
+        const tipHeight = 250 - tipMargin.top - tipMargin.bottom;
+
+        // Append SVG for the tooltip bar chart (only once)
+        const tipSvg = tooltipBarChartContainer
+          .append("svg")
+          .attr("width", tipWidth + tipMargin.left + tipMargin.right)
+          .attr("height", tipHeight + tipMargin.top + tipMargin.bottom)
+          .append("g")
+          .attr("transform", `translate(${tipMargin.left},${tipMargin.top})`);
+
+        // X Scale for tooltip bar chart (uses global 'dimensions' array)
+        const tipYScale = d3
+          .scaleBand()
+          .domain(dimensions)
+          .range([0, tipHeight])
+          .padding(0.25); // Inverted for SVG y-coordinate
+
+        // Y Scale for tooltip bar chart (scores 0-10)
+        const tipXScale = d3
+          .scaleLinear()
+          .domain([0, 10]) // Assuming scores are always 0-10 for dimensions
+          .range([0, tipWidth]);
+
+        // Add Y Axis to tooltip SVG
+        tipSvg
+          .append("g")
+          .attr("class", "axis tooltip-y-axis")
+          .attr("transform", `translate(0,0})`)
+          .call(d3.axisLeft(tipYScale))
+          .selectAll("text")
+          .attr("class", "tooltip-y-axis-label")
+          .attr("y", 0)
+          .attr("x", -5)
+          .attr("dy", ".35em")
+          //.attr("transform", "rotate(-60)")
+          .style("text-anchor", "end")
+          .style("font-size", "8px")
+          //.text((d) => d.substring(0, 3).toUpperCase()); // Abbreviate e.g., "HOU"
+          .text((d) => d); // Abbreviate e.g., "HOU"
+
+        // Add Y Axis to tooltip SVG
+        tipSvg
+          .append("g")
+          .attr("class", "axis tooltip-x-axis")
+          .call(d3.axisTop(tipXScale).ticks(5).tickFormat(d3.format(".0f")));
+
+        // Attach Event Listeners to Flowers
+        // 'flowers' is your D3 selection of all <g class="flower"> elements.
+        // Ensure this 'flowers' variable is the one created by .enter().append("g")
+        if (flowers && typeof flowers.on === "function") {
+          flowers
+            .on("mouseover.tooltip", function (d) {
+              // For D3 v5, 'd' is the datum. d3.event for mouse coords.
+              tooltipDiv.style("opacity", 0.95);
+              tooltipCountryName.text(d.country);
+
+              const bars = tipSvg
+                .selectAll(".tooltip-bar")
+                .data(d.data, (dataPoint) => dataPoint.dim);
+
+              bars
+                .enter()
+                .append("rect")
+                .attr("class", "tooltip-bar")
+                .attr("y", (dataPoint) => tipYScale(dataPoint.dim))
+                .attr("width", 0) // Start with no height for animation
+                .attr("x", 0) // Start from bottom for animation
+                .attr("height", tipYScale.bandwidth())
+                .style("fill", (dataPoint) => colorScale(dataPoint.dim)) // Uses global colorScale
+                .merge(bars)
+                .transition()
+                .duration(200)
+                .attr("y", (dataPoint) => tipYScale(dataPoint.dim))
+                .attr("height", tipYScale.bandwidth())
+                .attr("x", 0)
+                .attr("width", (dataPoint) => tipXScale(dataPoint.value))
+                .style("fill", (dataPoint) => colorScale(dataPoint.dim));
+
+              bars
+                .exit()
+                .transition()
+                .duration(100)
+                .attr("y", tipHeight)
+                .attr("height", 0)
+                .remove();
+            })
+            .on("mousemove.tooltip", function () {
+              tooltipDiv
+                .style("left", d3.event.pageX + 15 + "px")
+                .style("top", d3.event.pageY - 30 + "px");
+            })
+            .on("mouseout.tooltip", function () {
+              tooltipDiv.style("opacity", 0);
+            });
+
+          // If your existing mouseover/mouseout for flower opacity needs to coexist:
+          // You might need to combine them or ensure they don't conflict.
+          // The .tooltip namespace helps to separate these event handlers.
+          // Your existing opacity change:
+          // flowers.on("mouseover", function () {
+          //   d3.selectAll(".flower").transition().duration(200).style("opacity", 0.25);
+          //   d3.select(this).transition().duration(200).style("opacity", 1);
+          // });
+          // flowers.on("mouseout", function () {
+          //   d3.selectAll(".flower").transition().duration(200).style("opacity", 1);
+          // });
+          // These can remain as they are, or you can integrate the opacity logic into the .tooltip handlers
+          // if you want more complex interactions (e.g., only dim others if tooltip is active).
+          // For now, having them separate with namespaces should be fine.
+        } else {
+          console.error(
+            "Tooltip Error: 'flowers' selection not found or not a D3 selection."
+          );
+        }
+        // ---> END: TOOLTIP JAVASCRIPT CODE <---
       }
     </script>
   </body>
