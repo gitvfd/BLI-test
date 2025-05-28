@@ -1007,8 +1007,9 @@
       // Set up SVG container
       const svgWidth = document.getElementById("flower-container").offsetWidth; //getWidth();
       const svgHeight = getHeight();
-      const marginText = 125;
-      const margin = 55;
+      //const marginText = 125;
+      const marginBottom = 25;
+      const margin = 50;
       const svg = d3
         .select("#flower-container")
         .append("svg")
@@ -1103,7 +1104,7 @@
         flowerHeight = d3
           .scaleLinear()
           .domain([0, 10])
-          .range([svgHeight - marginText, 0]);
+          .range([svgHeight - marginBottom, 0]);
 
         // --- Create Y-Axis Group Element (ONCE) ---
         yAxisGroup = svg
@@ -1148,8 +1149,9 @@
           .attr("x2", 0)
           .attr("y1", 0)
           .attr("y2", function (d) {
-            return flowerHeight(calculateMean(d.data)) + marginText;
+            return flowerHeight(calculateMean(d.data)) + marginBottom;
           })
+          .attr("stroke-width", "0.25px")
           .attr("stroke", "#46AEA7");
 
         // add flowers petals
@@ -1176,7 +1178,7 @@
           .attr("y", 0)
           .attr("text-anchor", "end")
           .attr("transform", (d, i) => {
-            return "translate( " + 3 + " , " + 10 + ")," + "rotate(-90)";
+            return "translate( " + 3 + " , " + 25 + ")," + "rotate(-90)";
           })
           .text(function (d) {
             return d.country;

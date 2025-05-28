@@ -16,7 +16,7 @@
 }
 .box2 {
   background-color: #f9f9f9;
-  flex: 4; /* Takes 2 parts of available space */
+  flex: 5; /* Takes 2 parts of available space */
   width: 50%;
   min-width: 450px;
 }
@@ -74,7 +74,7 @@ p {
   line-height: 14px;
 }
 .dimension {
-  margin: 1px 0px 0px 0px;
+  margin: 3px 0px 0px 0px;
   border-bottom: 1px solid #b3bccd;
 }
 
@@ -89,15 +89,15 @@ p {
   align-items: center;
   width: 100%;
   font-family: "Noto Sans";
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 13px;
   color: #586179;
 }
 
 .dimension-icon {
-  width: 20px; /* Your desired icon width */
-  height: 20px; /* Your desired icon height */
+  width: 15px; /* Your desired icon width */
+  height: 15px; /* Your desired icon height */
   margin-right: 8px; /* Space between icon and the label text */
   flex-shrink: 0; /* Prevents the icon from shrinking if space is limited */
 }
@@ -128,8 +128,8 @@ p {
 
   /* Sizing for the Circle */
   /* Use fixed width and height to ensure a perfect circle, especially for two-digit numbers like "10" */
-  width: 14px; /* Adjust size as needed */
-  height: 14px; /* Must be equal to width for a circle with border-radius: 50% */
+  width: 12px; /* Adjust size as needed */
+  height: 12px; /* Must be equal to width for a circle with border-radius: 50% */
 
   /* Centering text (the number) within the circle */
   display: flex; /* Enables flexbox properties for easy centering */

@@ -47,7 +47,7 @@ function updateVis() {
       .select(".stem")
       .transition()
       .duration(transitionDuration)
-      .attr("y2", svgHeight - marginText - newFlowerY);
+      .attr("y2", svgHeight - marginBottom - newFlowerY);
 
     // --- 2. Update Petals ---
     // Prepare data for d3.pie.
