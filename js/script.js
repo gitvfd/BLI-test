@@ -250,7 +250,7 @@ function updateDynamicFlowerHeightDomain() {
   //    minScore -= padding;
   //    maxScore += padding;
   // }
-
-  flowerHeight.domain([0.9 * minScore, maxScore * 1.1]);
+  flowerHeight.domain([0, maxScore * 1.1]); //scale always start at 0
+  //flowerHeight.domain([0.9 * minScore, maxScore * 1.1]);
   // console.log("Updated flowerHeight domain to:", flowerHeight.domain());
 }

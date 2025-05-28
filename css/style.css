@@ -4,20 +4,21 @@
 }
 
 .box {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  padding: 10px;
   text-align: center;
 }
 .box1 {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
   flex: 1; /* Takes 1 part of available space */
   width: 50%;
 }
 .box2 {
+  background-color: #f9f9f9;
   flex: 4; /* Takes 2 parts of available space */
-
   width: 50%;
+  min-width: 450px;
 }
 #flower-container {
   position: relative;
@@ -25,7 +26,7 @@
   background-image: -webkit-linear-gradient(#e3e9f3, #e4e2d4);
   background-image: linear-gradient(#e3e9f3, #e4e2d4);*/
   background-color: white;
-  border-bottom: 1px solid #b3bccd;
+  border-bottom: 0px solid #b3bccd;
 }
 
 .countryName {
@@ -55,31 +56,33 @@
   background-color: white;
   border-bottom: 1px solid #b3bccd;
   max-width: 300px;
-  margin: 0 auto;
+  margin: 0 0;
   font-family: "Noto Sans", sans-serif;
 }
 h3 {
   text-align: left;
   font-family: "Noto Sans Display";
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 20px;
 }
 p {
   text-align: left;
   font-family: "Noto Sans";
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 300;
-  line-height: 18px;
+  line-height: 14px;
 }
 .dimension {
-  margin: 10px 0;
+  margin: 1px 0px 0px 0px;
   border-bottom: 1px solid #b3bccd;
 }
 
 .slider {
   width: 100%;
+  margin: 0px 0px;
 }
+
 .label-container {
   display: flex;
   /*justify-content: space-between;*/
@@ -93,8 +96,8 @@ p {
 }
 
 .dimension-icon {
-  width: 25px; /* Your desired icon width */
-  height: 25px; /* Your desired icon height */
+  width: 20px; /* Your desired icon width */
+  height: 20px; /* Your desired icon height */
   margin-right: 8px; /* Space between icon and the label text */
   flex-shrink: 0; /* Prevents the icon from shrinking if space is limited */
 }
@@ -110,9 +113,30 @@ p {
 .label-container span[id$="Value"] {
   /* Selects all spans whose id ends with 'Value' (e.g., housingValue, incomeValue) */
   margin-left: auto; /* This is the key: Pushes the value to the far right */
-  padding-left: 10px; /* Optional: Adds a little space before the value so it's not flush against other content if the label grows */
+  /*padding-left: 10px; /* Optional: Adds a little space before the value so it's not flush against other content if the label grows */
   font-weight: bold; /* Optional: Makes the value stand out a bit */
 }
+.assignedWeight {
+  /* Font Styling */
+  font-weight: bold; /* This provides the "weight font" (bold) */
+  font-size: 9px; /* Adjust font size so "10" fits comfortably */
+
+  /* Circle Appearance */
+  background-color: #001f3f; /* A nice Dark Navy Blue. Adjust hex code if you have a specific shade. */
+  color: #ffffff; /* White text for good contrast on the navy background */
+  border-radius: 50%; /* This makes the rectangular span into a circle */
+
+  /* Sizing for the Circle */
+  /* Use fixed width and height to ensure a perfect circle, especially for two-digit numbers like "10" */
+  width: 14px; /* Adjust size as needed */
+  height: 14px; /* Must be equal to width for a circle with border-radius: 50% */
+
+  /* Centering text (the number) within the circle */
+  display: flex; /* Enables flexbox properties for easy centering */
+  align-items: center; /* Vertically centers the number */
+  justify-content: center; /* Horizontally centers the number */
+}
+
 /*#results {
   margin-top: 40px;
 }
@@ -271,7 +295,7 @@ p {
 /**TOOLTIP**/
 /***********/
 #tooltip {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 1);
   border: 0px solid #ccc;
   border-radius: 1px;
   padding: 12px;
@@ -304,4 +328,62 @@ p {
 #tooltip-barchart-container .axis text {
   font-size: 8px;
   fill: #555;
+}
+
+/***********************************************/
+/* --- Responsive Styles for Small Screens --- */
+/***********************************************/
+@media (max-width: 500px) {
+  .viz {
+    flex-direction: column; /* Stack flex items vertically */
+    height: auto; /* Allow .viz to grow based on content height */
+    min-height: 100vh; /* Ensure it at least fills the viewport height if content is short */
+    gap: 0; /* Reset gap or set a small vertical gap e.g., 10px */
+  }
+
+  .box1,
+  .box2 {
+    flex-grow: 0; /* Don't allow boxes to grow beyond their content unless specified */
+    flex-shrink: 0; /* Don't allow boxes to shrink beyond their content unless specified */
+    flex-basis: auto; /* Let the content determine the initial size */
+    width: 100%; /* Make each box take the full viewport width */
+    max-width: 100%; /* Override any desktop max-width that might limit it */
+    /* Reset any specific flex values from desktop view if they conflict */
+  }
+
+  .box1 {
+    /* If box1 (sliders) can get very tall, you might want to limit its height
+       and make it scrollable, especially if box2 needs significant space. */
+    /* Example: */
+    /* max-height: 60vh; */
+    /* overflow-y: auto; */
+    order: 2; /* Explicitly set order if needed, though default is source order */
+  }
+
+  .box2 {
+    /* box2 contains the flower visualization.
+       Its height is largely determined by the SVG height set in your JavaScript
+       (svgHeight = window.innerHeight * 0.8;).
+       Ensure .box2 itself can accommodate this. */
+    /* You might want to give it a minimum height if the JS-driven SVG height
+       could become too small or if box1 takes up most of the space. */
+    /* Example: min-height: 300px; */
+    order: 1; /* Explicitly set order */
+    /* The #flower-container inside .box2 will contain the SVG.
+       Ensure #flower-container and its SVG are set to width: 100%; */
+  }
+
+  /* Optional: Adjust padding for smaller screens */
+  .box {
+    padding: 10px;
+  }
+
+  .container {
+    margin: 0px 1px 0px 1px;
+    padding: 0px 5% 0px 5%;
+  }
+  .slider {
+    width: 90%;
+    margin: 1px 0px;
+  }
 }

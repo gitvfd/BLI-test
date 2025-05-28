@@ -29,7 +29,7 @@
             <div class="label-container">
               <img src="img/Housing.png" alt="Housing" class="dimension-icon" />
               <label for="housing">Housing</label>
-              <span id="housingValue">5</span>
+              <span id="housingValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -46,7 +46,7 @@
             <div class="label-container">
               <img src="img/Income.png" alt="Income" class="dimension-icon" />
               <label for="income">Income</label>
-              <span id="incomeValue">5</span>
+              <span id="incomeValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -63,7 +63,7 @@
             <div class="label-container">
               <img src="img/Jobs.png" alt="Jobs" class="dimension-icon" />
               <label for="jobs">Jobs</label>
-              <span id="jobsValue">5</span>
+              <span id="jobsValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -84,7 +84,7 @@
                 class="dimension-icon"
               />
               <label for="community">Community</label>
-              <span id="communityValue">5</span>
+              <span id="communityValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -105,7 +105,7 @@
                 class="dimension-icon"
               />
               <label for="education">Education</label>
-              <span id="educationValue">5</span>
+              <span id="educationValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -126,7 +126,7 @@
                 class="dimension-icon"
               />
               <label for="environment">Environment</label>
-              <span id="environmentValue">5</span>
+              <span id="environmentValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -147,7 +147,7 @@
                 class="dimension-icon"
               />
               <label for="civic">Civic Engagement</label>
-              <span id="civicValue">5</span>
+              <span id="civicValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -164,7 +164,7 @@
             <div class="label-container">
               <img src="img/Health.png" alt="Health" class="dimension-icon" />
               <label for="health">Health</label>
-              <span id="healthValue">5</span>
+              <span id="healthValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -185,7 +185,7 @@
                 class="dimension-icon"
               />
               <label for="satisfaction">Life Satisfaction</label>
-              <span id="satisfactionValue">5</span>
+              <span id="satisfactionValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -202,7 +202,7 @@
             <div class="label-container">
               <img src="img/Safety.png" alt="Safety" class="dimension-icon" />
               <label for="safety">Safety</label>
-              <span id="safetyValue">5</span>
+              <span id="safetyValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -223,7 +223,7 @@
                 class="dimension-icon"
               />
               <label for="balance">Work-Life Balance</label>
-              <span id="balanceValue">5</span>
+              <span id="balanceValue" class="assignedWeight">5</span>
             </div>
             <input
               type="range"
@@ -1008,7 +1008,7 @@
       const svgWidth = document.getElementById("flower-container").offsetWidth; //getWidth();
       const svgHeight = getHeight();
       const marginText = 125;
-      const margin = 50;
+      const margin = 55;
       const svg = d3
         .select("#flower-container")
         .append("svg")
