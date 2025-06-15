@@ -245,13 +245,13 @@
             >Sort countries by:
           </label>
           <select id="sort-select">
-            <option value="default">Default (Original Order)</option>
+            <!--<option value="default">Default (Original Order)</option>-->
+            <option value="alphabetical_asc">Name (A-Z)</option>
+            <option value="alphabetical_desc">Name (Z-A)</option>
+            <option value="performance_asc">Performance (Lowest First)</option>
             <option value="performance_desc">
               Performance (Highest First)
             </option>
-            <option value="performance_asc">Performance (Lowest First)</option>
-            <option value="alphabetical_asc">Name (A-Z)</option>
-            <option value="alphabetical_desc">Name (Z-A)</option>
           </select>
         </div>
       </div>
@@ -267,6 +267,7 @@
       </p>
       <div id="tooltip-barchart-container"></div>
     </div>
+    <div id="dimension-tooltip"></div>
     <script>
       const dimensions = [
         "housing",
@@ -335,649 +336,6 @@
       var weightPetal = 1;
       var totalWeight = 11;
 
-      /*   const scores = [
-              {
-                country: "Australia",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia2",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria2",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium2",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada2",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia3",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria=3",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium3",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada3",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia4",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria4",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium4",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada4",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia5",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria5",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium5",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada5",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia6",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria6",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium6",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada6",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia7",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria7",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium7",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada7",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia8",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria8",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium8",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada8",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia9",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria9",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium9",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada9",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Australia10",
-                data: [
-                  { dim: "housing", value: 10 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 3 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 8 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Austria10",
-                data: [
-                  { dim: "housing", value: 1 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 3 },
-                  { dim: "community", value: 2 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 8 },
-                  { dim: "health", value: 4 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 7 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Belgium10",
-                data: [
-                  { dim: "housing", value: 0 },
-                  { dim: "income", value: 1 },
-                  { dim: "jobs", value: 0 },
-                  { dim: "community", value: 1 },
-                  { dim: "education", value: 1 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 1 },
-                  { dim: "health", value: 1 },
-                  { dim: "satisfaction", value: 0 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-              {
-                country: "Canada10",
-                data: [
-                  { dim: "housing", value: 6 },
-                  { dim: "income", value: 5 },
-                  { dim: "jobs", value: 1 },
-                  { dim: "community", value: 3 },
-                  { dim: "education", value: 6 },
-                  { dim: "environment", value: 2 },
-                  { dim: "civic", value: 5 },
-                  { dim: "health", value: 7 },
-                  { dim: "satisfaction", value: 2 },
-                  { dim: "safety", value: 0 },
-                  { dim: "balance", value: 1 },
-                ],
-              },
-            ];
-      */
       let scores = [];
       d3.tsv("data.tsv").then(function (loadedData) {
         // 1. Process the loaded TSV data
@@ -1201,7 +559,7 @@
         );
 
         // Tooltip Bar Chart Dimensions
-        const tipMargin = { top: 15, right: 15, bottom: 15, left: 55 };
+        const tipMargin = { top: 25, right: 15, bottom: 15, left: 100 };
         const tipWidth = 200 - tipMargin.left - tipMargin.right; // Adjust 200 if tooltip min-width changes
         const tipHeight = 250 - tipMargin.top - tipMargin.bottom;
 
@@ -1239,9 +597,20 @@
           .attr("dy", ".35em")
           //.attr("transform", "rotate(-60)")
           .style("text-anchor", "end")
-          .style("font-size", "8px")
-          //.text((d) => d.substring(0, 3).toUpperCase()); // Abbreviate e.g., "HOU"
-          .text((d) => d); // Abbreviate e.g., "HOU"
+          .style("font-size", "10px")
+          .text(function (d) {
+            if (d == "housing") return "Housing";
+            if (d == "income") return "Income";
+            if (d == "jobs") return "Jobs";
+            if (d == "community") return "Community";
+            if (d == "education") return "Education";
+            if (d == "environment") return "Environment";
+            if (d == "civic") return "Civic engagement";
+            if (d == "health") return "Health";
+            if (d == "satisfaction") return "Satisfaction";
+            if (d == "safety") return "Safety";
+            if (d == "balance") return "Work-life balance";
+          }); // assign proper name
 
         // Add Y Axis to tooltip SVG
         tipSvg
@@ -1369,6 +738,70 @@
         }
         // ---> END: TOOLTIP JAVASCRIPT CODE <---
       }
+
+      d3.tsv("info.tsv").then(function setupDimensionTooltips(
+        dimensionInfoMap
+      ) {
+        const tooltip = d3.select("#dimension-tooltip");
+        // Target the container for the icon and label, as hovering either should trigger the tooltip
+        const triggerContainers = d3.selectAll(".label-container");
+
+        if (tooltip.empty() || triggerContainers.empty()) {
+          console.warn(
+            "Tooltip setup failed: Tooltip container or trigger elements not found."
+          );
+          return;
+        }
+
+        triggerContainers
+          .on("mouseover", function () {
+            // Find the <label> inside the hovered container to get the dimension 'id'
+            const label = this.querySelector("label");
+            if (!label) return;
+
+            const dimensionId = label.getAttribute("for");
+
+            let definition;
+            console.log("function");
+            dimensionInfoMap.forEach(function (d) {
+              if (dimensionId == d.indic_label) {
+                definition = "<b>" + d.indic_name + "</b><br/>" + d.description;
+              }
+            });
+
+            if (definition) {
+              tooltip.html(definition); // Set the tooltip's text
+              tooltip.style("opacity", 1); // Make it visible
+            }
+          })
+          .on("mousemove", function () {
+            // This logic keeps the tooltip within the browser window boundaries
+            const event = d3.event; // (This is for D3 v5, as used in your project)
+            const tooltipNode = tooltip.node();
+            const tooltipWidth = tooltipNode.offsetWidth;
+            const tooltipHeight = tooltipNode.offsetHeight;
+            const safetyMargin = 15;
+
+            // Start by positioning below and to the right of the cursor
+            let xPosition = event.pageX + safetyMargin;
+            let yPosition = event.pageY + safetyMargin;
+
+            // Adjust if it overflows the window
+            if (xPosition + tooltipWidth > window.innerWidth) {
+              xPosition = event.pageX - tooltipWidth - safetyMargin; // Flip to left of cursor
+            }
+            if (yPosition + tooltipHeight > window.innerHeight) {
+              yPosition = event.pageY - tooltipHeight - safetyMargin; // Flip above cursor
+            }
+
+            tooltip
+              .style("left", xPosition + "px")
+              .style("top", yPosition + "px");
+          })
+          .on("mouseout", function () {
+            tooltip.style("opacity", 0); // Hide the tooltip
+          });
+      });
     </script>
   </body>
 </html>
