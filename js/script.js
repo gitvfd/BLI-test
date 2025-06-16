@@ -11,15 +11,15 @@ function calculateMean(arr) {
 // get screen width
 function getWidth() {
   if (self.innerWidth) {
-    return self.innerWidth - 5;
+    return self.innerWidth - 10;
   }
 
   if (document.documentElement && document.documentElement.clientWidth) {
-    return document.documentElement.clientWidth - 5;
+    return document.documentElement.clientWidth - 10;
   }
 
   if (document.body) {
-    return document.body.clientWidth - 5;
+    return document.body.clientWidth - 10;
   }
 }
 
