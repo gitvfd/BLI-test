@@ -17,8 +17,8 @@
 .box2 {
   background-color: #f9f9f9;
   flex: 5; /* Takes 5 parts of available space */
-  width: 49%;
-  /*min-width: 450px;*/
+  /*width: 49%;
+  min-width: 450px;*/
 }
 #flower-container {
   position: relative;
