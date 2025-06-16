@@ -30,7 +30,7 @@
 }
 
 .countryName {
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   fill: rgba(47, 47, 47, 0.8);
   /* offset-x | offset-y | blur-radius | color */
   text-shadow: 2px 2px 2px #ffffff;
@@ -57,7 +57,7 @@
   border-bottom: 1px solid #b3bccd;
   max-width: 220px;
   margin: 0 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
 }
 h3 {
   text-align: left;
@@ -68,8 +68,8 @@ h3 {
 }
 p {
   text-align: left;
-  font-family: "Noto Sans";
-  font-size: 12px;
+  font-family: "Noto Sans Display";
+  font-size: 13px;
   font-weight: 300;
   line-height: 13px;
 }
@@ -91,8 +91,8 @@ p {
   /*justify-content: space-between;*/
   align-items: center;
   width: 100%;
-  font-family: "Noto Sans";
-  font-size: 11px;
+  font-family: "Noto Sans Display";
+  font-size: 13px;
   font-weight: 400;
   line-height: 13px;
   color: #586179;
@@ -166,7 +166,7 @@ p {
 
 .y-axis .tick text {
   /* The numbers/labels on the ticks */
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   font-size: 9px; /* Or your preferred size */
   fill: #444; /* Slightly darker grey for text for readability */
 }
@@ -190,7 +190,7 @@ p {
 
 .axis .tick text {
   /* The numbers/labels on the ticks */
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   font-size: 9px; /* Or your preferred size */
   fill: #444; /* Slightly darker grey for text for readability */
 }
@@ -201,7 +201,7 @@ p {
 
 #sorting-controls {
   text-align: left;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   font-size: 11px;
   color: #586179;
 }
@@ -303,7 +303,7 @@ p {
   border: 0px solid #ccc;
   border-radius: 1px;
   padding: 12px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   font-size: 11px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   transition: opacity 0.2s ease-in-out;
@@ -319,7 +319,7 @@ p {
 
 #tooltip-barchart-container svg {
   display: block;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
 }
 
 #tooltip-barchart-container .axis path,
@@ -405,7 +405,7 @@ p {
   border: 0px solid #ccc;
   border-radius: 1px;
   padding: 12px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   font-size: 11px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   transition: opacity 0.2s ease-in-out;
@@ -426,7 +426,7 @@ p {
   border: 0px solid #ccc;
   border-radius: 1px;
   padding: 12px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   font-size: 11px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   transition: opacity 0.2s ease-in-out;
