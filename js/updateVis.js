@@ -122,5 +122,5 @@ function updateVis() {
     // then rotates that shape. The angular width of the wedge drawn by petalPath should be
     // (pieSlice.endAngle - pieSlice.startAngle).
   });
-  sortFlowers();
+  sortFlowers(document.getElementById("sort-select").value);
 }

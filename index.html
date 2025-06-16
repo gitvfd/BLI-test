@@ -21,9 +21,21 @@
     <div class="viz">
       <div class="container box box1">
         <h3>Create your Better Life Index</h3>
+
         <p>
-          Adjust the sliders to determine the importance given to each
-          dimension:
+          Rate the dimensions according to your preferences
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 256 256"
+            id="infoVideo"
+          >
+            <path
+              d="M142,176a6,6,0,0,1-6,6,14,14,0,0,1-14-14V128a2,2,0,0,0-2-2,6,6,0,0,1,0-12,14,14,0,0,1,14,14v40a2,2,0,0,0,2,2A6,6,0,0,1,142,176ZM124,94a10,10,0,1,0-10-10A10,10,0,0,0,124,94Zm106,34A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128Z"
+            ></path>
+          </svg>
+          :
         </p>
 
         <!-- Sliders for the 11 Dimensions -->
@@ -265,12 +277,23 @@
       id="tooltip"
       style="opacity: 0; position: absolute; pointer-events: none"
     >
-      <p style="margin: 0 0 5px 0">
+      <p
+        style="
+          margin: 0 0 5px 0;
+          padding: 0 0 5px 0;
+          border-bottom: solid 0.5px;
+        "
+      >
         <strong id="tooltip-country-name"></strong>
       </p>
       <div id="tooltip-barchart-container"></div>
     </div>
     <div id="dimension-tooltip"></div>
+    <div id="info-tooltip">
+      <video src="about_en.mp4" width="300" autoplay muted loop playsinline>
+        Your browser does not support the video tag.
+      </video>
+    </div>
     <script>
       const dimensions = [
         "housing",
@@ -305,11 +328,11 @@
       });
 
       /* function updateWeightsList() {
-        const list = document.getElementById("weightsList");
-        list.innerHTML = dimensions
-          .map((d) => `<li>${d.replace("-", " ")}: ${weights[d]}</li>`)
-          .join("");
-      }*/
+              const list = document.getElementById("weightsList");
+              list.innerHTML = dimensions
+                .map((d) => `<li>${d.replace("-", " ")}: ${weights[d]}</li>`)
+                .join("");
+            }*/
 
       // Initial render
       //updateWeightsList();
@@ -539,7 +562,15 @@
           .attr("y", 0)
           .attr("text-anchor", "end")
           .attr("transform", (d, i) => {
-            return "translate( " + 3 + " , " + 25 + ")," + "rotate(-90)";
+            return (
+              "translate( " +
+              3 +
+              " , " +
+              svgWidth / (0.75 * scores.length) +
+              5 +
+              ")," +
+              "rotate(-90)"
+            );
           })
           .text(function (d) {
             return d.country;
@@ -765,7 +796,6 @@
             const dimensionId = label.getAttribute("for");
 
             let definition;
-            console.log("function");
             dimensionInfoMap.forEach(function (d) {
               if (dimensionId == d.indic_label) {
                 definition = "<b>" + d.indic_name + "</b><br/>" + d.description;
@@ -805,6 +835,40 @@
             tooltip.style("opacity", 0); // Hide the tooltip
           });
       });
+
+      const infoTooltip = d3.select("#info-tooltip");
+      d3.select("#infoVideo")
+        .on("mouseover", function () {
+          // Set the tooltip's text
+          infoTooltip.style("opacity", 1); // Make it visible
+        })
+        .on("mousemove", function () {
+          // This logic keeps the tooltip within the browser window boundaries
+          const event = d3.event; // (This is for D3 v5, as used in your project)
+          const tooltipNode = infoTooltip.node();
+          const tooltipWidth = tooltipNode.offsetWidth;
+          const tooltipHeight = tooltipNode.offsetHeight;
+          const safetyMargin = 15;
+
+          // Start by positioning below and to the right of the cursor
+          let xPosition = event.pageX + safetyMargin;
+          let yPosition = event.pageY + safetyMargin;
+
+          // Adjust if it overflows the window
+          if (xPosition + tooltipWidth > window.innerWidth) {
+            xPosition = event.pageX - tooltipWidth - safetyMargin; // Flip to left of cursor
+          }
+          if (yPosition + tooltipHeight > window.innerHeight) {
+            yPosition = event.pageY - tooltipHeight - safetyMargin; // Flip above cursor
+          }
+
+          infoTooltip
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px");
+        })
+        .on("mouseout", function () {
+          infoTooltip.style("opacity", 0); // Hide the tooltip
+        });
     </script>
   </body>
 </html>
