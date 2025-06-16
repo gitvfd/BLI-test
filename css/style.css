@@ -394,7 +394,7 @@ p {
 
 /* --- CSS for Dimension Definition Tooltip --- */
 #dimension-tooltip {
-  position: absolute; /* Allows positioning relative to the page */
+  position: relative; /* Allows positioning relative to the page */
   opacity: 0; /* Initially hidden */
   padding: 12px;
   line-height: 1.5;
@@ -415,7 +415,7 @@ p {
 
 /* --- CSS for Dimension Definition Tooltip --- */
 #info-tooltip {
-  position: absolute; /* Allows positioning relative to the page */
+  position: relative; /* Allows positioning relative to the page */
   opacity: 0; /* Initially hidden */
   padding: 12px;
   line-height: 1.5;
