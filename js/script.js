@@ -254,3 +254,12 @@ function updateDynamicFlowerHeightDomain() {
   //flowerHeight.domain([0.9 * minScore, maxScore * 1.1]);
   // console.log("Updated flowerHeight domain to:", flowerHeight.domain());
 }
+
+function applyTranslations(t) {
+  document.querySelectorAll("[data-i18n-key]").forEach((element) => {
+    const key = element.getAttribute("data-i18n-key");
+    if (t[key]) {
+      element.textContent = t[key];
+    }
+  });
+}

@@ -1,0 +1,24 @@
+key	en	fr
+main_title	Better Life Index	Indicateur du vivre mieux
+main_subtitle	Adjust the sliders to assign a weight (0-10) to each dimension:	Ajustez les curseurs pour attribuer un poids (0-10) à chaque dimension :
+housing_label	Housing	Logement
+income_label	Income	Revenus
+jobs_label	Jobs	Emploi
+community_label	Community	Communauté
+education_label	Education	Éducation
+environment_label	Environment	Environnement
+civic_label	Civic Engagement	Engagement Civique
+health_label	Health	Santé
+satisfaction_label	Life Satisfaction	Satisfaction
+safety_label	Safety	Sécurité
+balance_label	Work-Life Balance	Équilibre Vie-Travail
+weights_title	Selected Weights	Poids Sélectionnés
+sort_by_label	Sort countries by:	Trier les pays par :
+sort_default	Default (Original Order)	Ordre par Défaut
+sort_perf_desc	Performance (Highest First)	Performance (Décroissant)
+sort_perf_asc	Performance (Lowest First)	Performance (Croissant)
+sort_name_asc	Name (A-Z)	Nom (A-Z)
+sort_name_desc	Name (Z-A)	Nom (Z-A)
+collapse_btn_hide	Hide	Cacher
+collapse_btn_show	Show	Afficher
+axis_label	Performance Score	Score de Performance

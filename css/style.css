@@ -421,7 +421,8 @@ p {
   opacity: 0; /* Initially hidden */
   padding: 12px;
   line-height: 1.5;
-  max-width: 300px; /* Prevents the tooltip from becoming too wide */
+  width: 75%;
+  max-width: 600px; /* Prevents the tooltip from becoming too wide */
   text-align: left;
   pointer-events: none; /* IMPORTANT: Prevents the tooltip from blocking mouse events */
   background-color: rgba(255, 255, 255, 1);
@@ -432,6 +433,5 @@ p {
   font-size: 11px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   transition: opacity 0.2s ease-in-out;
-  min-width: 220px; /* Adjust as needed */
   z-index: 100; /* Ensure it's on top */
 }
