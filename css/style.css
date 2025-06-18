@@ -75,6 +75,18 @@ p {
   font-weight: 300;
   line-height: 13px;
 }
+div {
+  display: inline;
+  text-align: left;
+  font-family: "Noto Sans Display";
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 13px;
+}
+#infoSign {
+  display: inline;
+  text-align: left;
+}
 #infoVideo {
   vertical-align: middle;
 }
