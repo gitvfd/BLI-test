@@ -367,7 +367,7 @@
 
       const t = {};
 
-      d3.tsv("translation.tsv").then(function (loadedTrans) {
+      d3.tsv("translation.tsv").then(function (translationData) {
           translationData.forEach(d => {
               t[d.key] = d[lang]; // Store the text for the detected language
           });
