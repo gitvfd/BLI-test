@@ -748,7 +748,10 @@ function translateEnToFr(englishString, enToFrMap) {
             .on("mouseover.tooltip", function (d) {
               // For D3 v5, 'd' is the datum. d3.event for mouse coords.
               tooltipDiv.style("opacity", 0.95);
-              tooltipCountryName.text(d.country);
+              if (lang=="en")
+               tooltipCountryName.text(d.country);
+              else
+              tooltipCountryName.text(translateEnToFr(d.country,enToFrMap));
 
               const bars = tipSvg
                 .selectAll(".tooltip-bar")
