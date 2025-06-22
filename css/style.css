@@ -68,14 +68,14 @@ h3 {
   font-weight: 700;
   line-height: 18px;
 }
-p {
+#p {
   text-align: left;
   font-family: "Noto Sans Display";
   font-size: 13px;
   font-weight: 300;
   line-height: 13px;
 }
-div {
+#subtitle {
   display: inline;
   text-align: left;
   font-family: "Noto Sans Display";
@@ -83,11 +83,9 @@ div {
   font-weight: 300;
   line-height: 13px;
 }
-#infoSign {
-  display: inline;
-  text-align: left;
-}
+
 #infoVideo {
+  display: inline;
   vertical-align: middle;
 }
 .dimension {

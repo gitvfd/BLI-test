@@ -22,22 +22,22 @@
       <div class="container box box1">
         <h3 data-i18n-key="main_title">Create your Better Life Index</h3>
 
-        <p><div data-i18n-key="main_subtitle">Rate the dimensions according to your preferences</div>
-          
-          <svg id="infoSign"
-            xmlns="http://www.w3.org/2000/svg"
-            width="15"
-            height="15"
-            viewBox="0 0 256 256"
-            id="infoVideo"
-          >
-            <path
-              d="M142,176a6,6,0,0,1-6,6,14,14,0,0,1-14-14V128a2,2,0,0,0-2-2,6,6,0,0,1,0-12,14,14,0,0,1,14,14v40a2,2,0,0,0,2,2A6,6,0,0,1,142,176ZM124,94a10,10,0,1,0-10-10A10,10,0,0,0,124,94Zm106,34A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128Z"
-            ></path>
-          </svg>
-          :
-        </p>
+        <p><div id="subtitle" data-i18n-key="main_subtitle">
+          Rate the dimensions according to your preferences</div>
+      
 
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="15"
+          height="15"
+          viewBox="0 0 256 256"
+          id="infoVideo"
+        >
+          <path
+            d="M142,176a6,6,0,0,1-6,6,14,14,0,0,1-14-14V128a2,2,0,0,0-2-2,6,6,0,0,1,0-12,14,14,0,0,1,14,14v40a2,2,0,0,0,2,2A6,6,0,0,1,142,176ZM124,94a10,10,0,1,0-10-10A10,10,0,0,0,124,94Zm106,34A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128Z"
+          ></path>
+        </svg>
+      </p>
         <!-- Sliders for the 11 Dimensions -->
         <div id="sliders">
           <div class="dimension">
@@ -320,7 +320,8 @@
       </video>
     </div>
     <script>
-const lang = window.location.hash === '#fr' ? 'fr' : 'en';
+      const lang = window.location.hash === "#fr" ? "fr" : "en";
+    
       const dimensions = [
         "housing",
         "income",
@@ -396,8 +397,25 @@ const lang = window.location.hash === '#fr' ? 'fr' : 'en';
           }
         });
       }
+      function createEnToFrLookupMap(translationData) {
+  const lookupMap = new Map();
+  if (translationData) {
+    translationData.forEach(row => {
+      // For each row, set the English text as the key and the French text as the value.
+      lookupMap.set(row.en, row.fr);
+    });
+  }
+  return lookupMap;
+}
+function translateEnToFr(englishString, enToFrMap) {
+  // Use the map to find the French equivalent.
+  // If the key (English string) exists, return its value (French string).
+  // Otherwise, return the original English string as a fallback.
+  return enToFrMap.get(englishString) || englishString;
+}
       const t = {};
 
+      let enToFrMap = {};
       d3.tsv("translation.tsv").then(function (translationData) {
         translationData.forEach((d) => {
           t[d.key] = d[lang]; // Store the text for the detected language
@@ -405,8 +423,10 @@ const lang = window.location.hash === '#fr' ? 'fr' : 'en';
 
         // --- 3b. Apply Static Translations to the Page ---
         applyTranslations(t);
-      });
+        enToFrMap = createEnToFrLookupMap(translationData)
 
+      });
+;
       let scores = [];
       d3.tsv("data.tsv").then(function (loadedData) {
         // 1. Process the loaded TSV data
@@ -618,7 +638,11 @@ const lang = window.location.hash === '#fr' ? 'fr' : 'en';
             );
           })
           .text(function (d) {
+            if(lang=="en")
+           
             return d.country;
+          else
+          return((translateEnToFr(d.country,enToFrMap)));
           });
 
         flowers.on("mouseover", function () {
@@ -678,7 +702,9 @@ const lang = window.location.hash === '#fr' ? 'fr' : 'en';
           .style("text-anchor", "end")
           .style("font-size", "10px")
           .text(function (d) {
-            if (d == "housing") return "Housing";
+
+            if(lang=="en"){
+              if (d == "housing") return "Housing";
             if (d == "income") return "Income and wealth";
             if (d == "jobs") return "Work and job quality";
             if (d == "community") return "Social connections";
@@ -689,6 +715,23 @@ const lang = window.location.hash === '#fr' ? 'fr' : 'en';
             if (d == "satisfaction") return "Subjective well-being";
             if (d == "safety") return "Safety";
             if (d == "balance") return "Work-life balance";
+            }
+           
+          else{
+
+            if (d == "housing") return translateEnToFr("Housing",enToFrMap);
+            if (d == "income") return translateEnToFr("Income and wealth",enToFrMap);
+            if (d == "jobs") return translateEnToFr("Work and job quality",enToFrMap);
+            if (d == "community") return translateEnToFr("Social connections",enToFrMap);
+            if (d == "education") return translateEnToFr("Knowledge and skills",enToFrMap);
+            if (d == "environment") return translateEnToFr("Environmental quality",enToFrMap);
+            if (d == "civic") return translateEnToFr("Civic engagement",enToFrMap);
+            if (d == "health") return translateEnToFr("Health",enToFrMap);
+            if (d == "satisfaction") return translateEnToFr("Subjective well-being",enToFrMap);
+            if (d == "safety") return translateEnToFr("Safety",enToFrMap);
+            if (d == "balance") return translateEnToFr("Work-life balance",enToFrMap);
+          }
+   
           }); // assign proper name
 
         // Add Y Axis to tooltip SVG
@@ -843,7 +886,10 @@ const lang = window.location.hash === '#fr' ? 'fr' : 'en';
             let definition;
             dimensionInfoMap.forEach(function (d) {
               if (dimensionId == d.indic_label) {
+                if(lang=="en")
                 definition = "<b>" + d.indic_name + "</b><br/>" + d.description;
+              else
+              definition = "<b>" + translateEnToFr(d.indic_name ,enToFrMap)+ "</b><br/>" +translateEnToFr(d.description ,enToFrMap);
               }
             });
 
