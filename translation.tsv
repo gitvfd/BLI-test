@@ -20,4 +20,5 @@ sort_perf_asc	Performance (Lowest First)	Performance (Croissant)
 sort_name_asc	Name (A-Z)	Nom (A-Z)
 sort_name_desc	Name (Z-A)	Nom (Z-A)
 australia	Australia	Australie
-income_and_wealth	revenu	blabla
+income_and_wealth	Income and Wealth	revenublabla
+income_and_wealth2	Income	revenublablasimpler

@@ -90,7 +90,7 @@ h3 {
 }
 .dimension {
   margin: 3px 0px 0px 0px;
-  border-bottom: 1px solid #b3bccd;
+  /*border-bottom: 1px solid #b3bccd;*/
 }
 
 .slider {
