@@ -1,17 +1,28 @@
 key	en	fr
-main_title	Create your Better Life Index	Indicateur du vivre mieux
-main_subtitle	Rate the dimensions according to your preferences	Ajustez les curseurs pour attribuer un poids (0-10) à chaque dimension :
+main_title	Create your Better Life Index	Créez votre indicateur du vivre mieux
+main_subtitle	Adjust the sliders according to how important each dimension is to you (from 0-10):	Ajustez les curseurs en fonction de l'importance que chaque dimension revêt pour vous (de 0 à 10) :
 housing_label	Housing	Logement
-income_label	Income	Revenus
-jobs_label	Jobs	Emploi
-community_label	Community	Communauté
-education_label	Education	Éducation
-environment_label	Environment	Environnement
-civic_label	Civic Engagement	Engagement Civique
+income_label	Income and wealth	Revenu et patrimoine
+jobs_label	Work and job quality	Travail et qualité de l'emploi
+community_label	Social connections	Liens sociaux
+education_label	Knowledge and skills	Connaissances et compétences
+environment_label	Environmental quality	Qualité environnementale
+civic_label	Civic Engagement	Engagement civique
 health_label	Health	Santé
-satisfaction_label	Life Satisfaction	Satisfaction
+satisfaction_label	Subjective well-being	Bien-être subjectif
 safety_label	Safety	Sécurité
-balance_label	Work-Life Balance	Équilibre Vie-Travail
+balance_label	Work-life balance	Équilibre travail-vie privée
+income	Income and wealth	Revenu et patrimoine
+jobs	Work and job quality	Travail et qualité de l'emploi
+housing	Housing	Logement
+balance	Work-life balance	Équilibre travail-vie privée
+health	Health	Santé
+education	Knowledge and skills	Connaissances et compétences
+community	Social connections	Liens sociaux
+civic	Civic engagement	Engagement civique
+environment	Environmental quality	Qualité environnementale
+safety	Safety	Sécurité
+satisfaction	Subjective well-being	Bien-être subjectif
 weights_title	Selected Weights	Poids Sélectionnés
 sort_by_label	Sort countries by:	Trier les pays par :
 sort_default	Default (Original Order)	Ordre par Défaut
@@ -20,5 +31,14 @@ sort_perf_asc	Performance (Lowest First)	Performance (Croissant)
 sort_name_asc	Name (A-Z)	Nom (A-Z)
 sort_name_desc	Name (Z-A)	Nom (Z-A)
 australia	Australia	Australie
-income_and_wealth	Income and wealth	revenublabla
-income_and_wealth2	Income	revenublablasimpler
+income_def	Income and wealth shape households’ consumption possibilities. Income after taxes and transfers indicates what households have available to spend, while direct measures of household consumption expenditure inform about “realised” material conditions (rather than possibilities). Wealth meanwhile provides a buffer that can help to smooth consumption and enable longer-term investments (such as in housing).	Le revenu et le patrimoine façonnent les possibilités de consommation des individus et des ménages. Le revenu après impôts et transferts indique ce dont disposent les individus pour dépenser, tandis que les mesures directes des dépenses de consommation des individus renseignent sur les conditions matérielles « réalisées » (plutôt que sur les possibilités). Le patrimoine fournit un tampon qui peut aider à lisser la consommation et permettre des investissements à plus long terme (comme dans le cas du logement).
+jobs_def	Work refers to productive activity (whether paid or unpaid), and job quality is about both material and non-material aspects of people’s working conditions. Material aspects of working conditions include issues such as remuneration (e.g. salary), the availability of jobs, and the risk of job loss. Non-material aspects relate to the quality of the working environment, measured through workers’ self-reports about their physical safety, the content of their job, how well this matches their skills and abilities, the autonomy afforded, their learning opportunities, working time arrangements, and relationships with co-workers.	Le travail fait référence à l'activité productive (qu'elle soit rémunérée ou non), et la qualité de l'emploi concerne à la fois les aspects matériels et non matériels des conditions de travail des personnes. Les aspects matériels des conditions de travail comprennent des questions telles que la rémunération (par exemple, le salaire), la disponibilité des emplois et le risque de perte d'emploi. Les aspects non matériels ont trait à la qualité de l'environnement de travail, mesurée par les auto-évaluations des travailleurs sur leur sécurité physique, le contenu de leur travail, l'adéquation entre leurs compétences et leurs capacités, l'autonomie accordée, leurs possibilités d'apprentissage, l'aménagement du temps de travail et les relations avec les collègues.
+housing_def	Housing provides shelter, safety, privacy and personal space. The area where people live also determines their access to many different services. Different aspects of housing conditions include the quality of housing, housing affordability, and the amenities and characteristics of neighbourhoods.	Le logement offre un abri, la sécurité, l’intimité et un espace personnel. L’endroit où les gens vivent détermine également leur accès à de nombreux services différents. Les conditions de logement varient de la qualité du logement, à l’accessibilité financière du logement, ainsi qu’aux services et aux caractéristiques des quartiers.
+balance_def	Work-Life Balance is about being able to combine family commitments, leisure, and work.	L'équilibre entre vie professionnelle et vie privée consiste à être capable de combiner les engagements familiaux, les loisirs et le travail.
+health_def	Health is about being and feeling well: a long life unencumbered by physical or mental illness, and the ability to participate in activities that people value.	La santé, c’est être et se sentir bien : vivre longtemps sans être limité par des maladies physiques ou mentales et pouvoir participer pleinement aux activités que l’on apprécie.
+education_def	Knowledge and skills are about what people know and can do.	Les connaissances et compétences concernent ce que les individus savent et peuvent faire.
+community_def	Social Connections capture the quantity of social interactions (e.g., frequency and amount of time individuals spend with household members, their family, friends, colleagues, and other known persons), their quality (e.g. satisfaction with social interactions, perceived loneliness), and the support (e.g. emotional and financial) provided by these connections.	Les liens sociaux saisissent la quantité d'interactions sociales (par exemple, la fréquence et le temps que les personnes passent avec les membres du ménage, leur famille, leurs amis, leurs collègues et d'autres personnes connues), leur qualité (par exemple., satisfaction à l'égard des interactions sociales, solitude perçue) et le soutien (par exemple, émotionnel et financier) fourni par ces liens.
+civic_def	Civic Engagement is about whether people can and do take part in a range of important civic activities that enable them to shape the society they live in.	L'engagement civique désigne la capacité et la participation des individus à des activités civiques essentielles leur permettant d'influencer la société dans laquelle ils vivent.
+environment_def	Environmental Quality affects human health through the quality of air, water and soil, which is related to the presence and density of hazardous substances. Environmental Quality also matters intrinsically to people who value natural beauty and the amenities that affect their life choices (e.g. a place to live). Finally, people benefit from environmental services and assets.	La qualité de l'environnement affecte la santé humaine en raison de la qualité de l'air, de l'eau et du sol, qui est liée à la présence et à la densité de substances dangereuses. La qualité de l'environnement est également intrinsèquement importante pour les personnes qui apprécient la beauté naturelle et les commodités qui influencent leurs choix de vie (par exemple, un endroit où vivre). Enfin, les individus bénéficient de services et d'actifs environnementaux.
+safety_def	Safety is about freedom from harm, whether that harm comes in the form of crime, conflict, violence, terrorism, oppression, accidents or natural disasters.	La sécurité, c'est l'absence de mal, qu'il s'agisse de crime, de conflit, de violence, de terrorisme, d'oppression, d'accident ou de catastrophe naturelle.
+satisfaction_def	Subjective Well-being is about good mental states, and how people experience their lives.	Le bien-être subjectif concerne les bons états mentaux et la façon dont les gens vivent leur vie.
