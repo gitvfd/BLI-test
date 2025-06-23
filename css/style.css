@@ -63,6 +63,7 @@
 }
 h3 {
   text-align: left;
+  display: inline;
   font-family: "Noto Sans Display";
   font-size: 16px;
   font-weight: 700;
