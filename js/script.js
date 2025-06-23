@@ -26,15 +26,18 @@ function getWidth() {
 //get screen height
 function getHeight() {
   if (self.innerHeight) {
-    return self.innerHeight;
+    if (self.innerHeight > 700) return 700;
+    else return self.innerHeight;
   }
 
   if (document.documentElement && document.documentElement.clientHeight) {
-    return document.documentElement.clientHeight;
+    if (document.documentElement.clientHeight > 700) return 700;
+    else return document.documentElement.clientHeight;
   }
 
   if (document.body) {
-    return document.body.clientHeight;
+    if (document.body.clientHeight > 700) return 700;
+    else return document.body.clientHeight;
   }
 }
 
