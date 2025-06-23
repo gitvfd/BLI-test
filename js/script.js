@@ -25,7 +25,7 @@ function getWidth() {
 
 //get screen height
 function getHeight() {
-  if (self.innerHeight) {
+  /*if (self.innerHeight) {
     if (self.innerHeight > 800) return 800;
     else return self.innerHeight;
   }
@@ -38,7 +38,8 @@ function getHeight() {
   if (document.body) {
     if (document.body.clientHeight > 800) return 800;
     else return document.body.clientHeight;
-  }
+  }*/
+  return 750;
 }
 
 // Ensure this function is defined after svg, scores, angleScale, weights, flowerHeight are initialized.
