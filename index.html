@@ -313,7 +313,8 @@
     </div>
     <div id="dimension-tooltip"></div>
     <div id="info-tooltip">
-      <video src="about_en.mp4" width="100%" autoplay muted loop playsinline>
+      <video width="100%" id="bliVideo"  autoplay muted loop playsinline>
+    <source src="about_en.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -931,6 +932,38 @@ function translateEnToFr(englishString, enToFrMap) {
       const infoTooltip = d3.select("#info-tooltip");
       d3.select("#infoVideo")
         .on("mouseover", function () {
+          if(lang=="en"){
+            let video = document.getElementById('bliVideo');
+
+// Pause the video before updating
+video.pause();
+
+// Update the <source> element's src
+let source = video.querySelector('source');
+source.src = "about_en.mp4";
+
+// Reload the video with the new source
+video.load();
+
+// Resume playback if autoplay is desired
+video.play();
+          }
+        else{
+          let video = document.getElementById('bliVideo');
+
+// Pause the video before updating
+video.pause();
+
+// Update the <source> element's src
+let source = video.querySelector('source');
+source.src = "about_fr.mp4";
+
+// Reload the video with the new source
+video.load();
+
+// Resume playback if autoplay is desired
+video.play();
+        }
           // Set the tooltip's text
           infoTooltip.style("opacity", 1); // Make it visible
         })

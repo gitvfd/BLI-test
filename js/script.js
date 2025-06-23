@@ -86,9 +86,23 @@ function sortFlowers(sortType) {
   } else if (sortType === "performance_asc") {
     dataToSort.sort((a, b) => a.currentWeightedScore - b.currentWeightedScore);
   } else if (sortType === "alphabetical_asc") {
-    dataToSort.sort((a, b) => a.country.localeCompare(b.country));
+    if (lang == "en")
+      dataToSort.sort((a, b) => a.country.localeCompare(b.country));
+    else
+      dataToSort.sort((a, b) =>
+        translateEnToFr(a.country, enToFrMap).localeCompare(
+          translateEnToFr(b.country, enToFrMap)
+        )
+      );
   } else if (sortType === "alphabetical_desc") {
-    dataToSort.sort((a, b) => b.country.localeCompare(a.country));
+    if (lang == "en")
+      dataToSort.sort((a, b) => b.country.localeCompare(a.country));
+    else
+      dataToSort.sort((a, b) =>
+        translateEnToFr(b.country, enToFrMap).localeCompare(
+          translateEnToFr(a.country, enToFrMap)
+        )
+      );
   } else if (sortType === "default") {
     // Revert to the original 'scores' array order.
     // We need to map the original scores array to ensure we have the attached 'currentWeightedScore'
