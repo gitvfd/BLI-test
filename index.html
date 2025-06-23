@@ -645,12 +645,16 @@ function translateEnToFr(englishString, enToFrMap) {
           });
 
         flowers.on("mouseover", function () {
-          d3.selectAll(".flower").style("opacity", 0.25);
-          d3.select(this).style("opacity", 1);
+          d3.selectAll(".flower").transition()
+          .duration(150).style("opacity", 0.25);
+          d3.select(this).transition()
+          .duration(150).style("opacity", 1);
         });
         flowers.on("mouseout", function () {
-          d3.selectAll(".flower").style("opacity", 1);
-          d3.select(this).style("opacity", 1);
+          d3.selectAll(".flower").transition()
+          .duration(150).style("opacity", 1);
+          d3.select(this).transition()
+          .duration(150).style("opacity", 1);
         });
         updateVis();
 
@@ -746,7 +750,8 @@ function translateEnToFr(englishString, enToFrMap) {
           flowers
             .on("mouseover.tooltip", function (d) {
               // For D3 v5, 'd' is the datum. d3.event for mouse coords.
-              tooltipDiv.style("opacity", 0.95);
+              tooltipDiv.transition()
+              .duration(150).style("opacity", 0.95);
               if (lang=="en")
                tooltipCountryName.text(d.country);
               else
@@ -838,7 +843,8 @@ function translateEnToFr(englishString, enToFrMap) {
                 .style("top", yPosition + "px");
             })
             .on("mouseout.tooltip", function () {
-              tooltipDiv.style("opacity", 0);
+              tooltipDiv.transition()
+              .duration(150).style("opacity", 0);
             });
 
           // If your existing mouseover/mouseout for flower opacity needs to coexist:
